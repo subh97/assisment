@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock details</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font: 1em sans-serif;
+        }
+
+        body{
+            background-color: springgreen;
+            background-size: cover;
+            color: #000;
+        }
+        .details-form{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            transform: translate(-50%,-50%);
+        }
+        .details-form{
+            font-size: 30px;
+            text-align: center;
+            text-transform:capitalize;
+            margin: 30px,0;
+        }
+        .details-form h1{
+            font-size: 40px;
+            text-align: center;
+            text-transform: capitalize;
+            margin: 40px;
+        }
+        
+      
+        .details-form a{
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px,0;
+            padding: 20px,25px;
+            width: 40%;
+            border: 0;
+            border-radius: 5px;
+
+        }
+          
+        
+        .details-form form{
+            font-size: 25px;
+            padding: 15px,10px;
+            border: 0;
+            width: 100%;
+            border-radius: 5px;
+            
+        }
+        .details-form p{
+            font-size: 20px;
+            margin: 15px,0;
+        }
+    </style>
+</head>
+<body>
+    <div class="details-form">
+        <p style="text-align:left;"> <a href="{% url 'contact' %}">contact</a></p>
+        <p style="text-align:left;"> <a href="{% url 'Stock' %}">add product</a></p>
+        <p style="text-align:left;"> <a href="{% url 'Logout' %}">Logout</a></p>
+        <h1>stock Detail</h1>
+    
+        <form action="" method="POST">
+            <input  name="item_name" placeholder="search for products" class="form-control">
+            <button class="btn btn-sucess" type="submit">Search</button><br><br>
+
+
+            {% csrf_token %}
+            {% for form in product %}
+              {{ form.name}} <br>
+              {{form.price}} {{ fm.error|striptags }}<br>
+              {{form.status}}
+              <br><br>
+               <a href="/{{form.id}}" type="submit">View</a>&nbsp
+               <a href="{% url 'Buy' %}">Buy</a>
+               <br>
+
+            {% endfor %}
+            <br>
+            <br>
+
+            {% if product.has_previous %}
+                <a  href="?page=1">&laquo; first</a>&nbsp  &nbsp
+                <a href="?page={{ product.previous_page_number }}">previous</a>
+            {% endif %}
+
+            
+            Page {{ product.number }} of {{product.paginator.num_pages }}.
+       
+
+        {% if product.has_next %}
+            <a class="page-link" href="?page={{product.next_page_number }}">next</a>&nbsp  &nbsp
+            <a class="page-link" href="?page={{ product.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+        </form>
+</body>
+</html>

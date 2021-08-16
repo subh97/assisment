@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Details</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font: 1em sans-serif;
+        }
+
+        body{
+            background-color: springgreen;
+            background-size: cover;
+            color: #000;
+        }
+        .product-form{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            transform: translate(-50%,-50%);
+        }
+        .product-form{
+            font-size: 30px;
+            text-align: center;
+            text-transform:capitalize;
+            margin: 30px,0;
+        }
+        .product-form h1{
+            font-size: 40px;
+            text-align: center;
+            text-transform: capitalize;
+            margin: 40px;
+        }
+        .product-form button{
+            font-size: 30px;
+            font-weight: bold;
+            margin: 10px,0;
+            padding: 20px,25px;
+            width: 40%;
+            border: 0;
+            border-radius: 5px;
+
+        }
+          
+        .product-form label{
+            font-size: 20px;
+            margin: 15px,0;
+        }
+        .product-form input{
+            font-size: 25px;
+            padding: 15px,10px;
+            border: 0;
+            width: 100%;
+            border-radius: 5px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="product-form">
+        <h1>Product Add </h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for fm in form %}
+               {{ fm.label_tag}} {{fm}} {{ fm.error|striptags }}
+            {% endfor %}
+         
+ 
+         <button type="submit">Add</button>
+ 
+        </form>
+</body>
+</html>
