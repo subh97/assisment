@@ -81,17 +81,17 @@ def product_details(request,id):
 
 
 @login_required(login_url="login/")
-def busy_stock(request):
+def busy_stock(request,id):
+    obj=Product.objects.filter(id=id)
     if request.method=='POST':
-        #obj=Product.objects.filter(id=id)
-       # print(obj)
+        
         order=Order_stock(request.POST)
         if order.is_valid():
             order.save()
 
     else:
         order=Order_stock() 
-    return render(request,'stock/order.html',{'order':order})
+    return render(request,'stock/order.html',{'obj':obj},{'order':order})
 
 def order_detail(request):
     obj=list(Product.objects.all().values_list('name','price'))

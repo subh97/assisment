@@ -11,98 +11,178 @@
             margin: 0;
             font: 1em sans-serif;
         }
-
-        body{
-            background-color: springgreen;
-            background-size: cover;
-            color: #000;
-        }
-        .details-form{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 400px;
-            transform: translate(-50%,-50%);
-        }
-        .details-form{
-            font-size: 30px;
-            text-align: center;
-            text-transform:capitalize;
-            margin: 30px,0;
-        }
-        .details-form h1{
+        body  
+        {  
+            margin: 0;  
+            padding: 0;  
+            background-color:#6abadeba;  
+            font-family: 'Arial';  
+}  
+        .details-form{  
+            width: 500px;    
+            margin: auto;  
+            margin: 20 0;  
+            padding: 80px;  
+            background:darkcyan;  
+            border-radius: 15px ;  
+        }  
+        h1{  
+            text-align: center;  
+            color:black;  
+            padding: 25px;
             font-size: 40px;
-            text-align: center;
             text-transform: capitalize;
-            margin: 40px;
+            margin: 40px;  
+        }  
+        label{  
+            color:black;  
+            font-size: 17px;  
         }
+        a{  
+            float: right;  
+            background-color: grey;  
+        }   
+        label{  
+            width: 300px;  
+            height: 30px;  
+            border: none;  
+            border-radius: 3px;  
+            padding-left: 15px;  
+        } 
         
-      
-        .details-form a{
+       
+        button{  
+            width: 100px;  
+            height: 30px;  
+            border: none;  
+            border-radius: 17px;  
+            padding-left: 7px;  
+            color: blue;  
+        }  
+        input{
+            width: 250px;  
+            height: 40px;  
+            border: none;  
+            border-radius: 17px;  
+            padding-left: 7px;  
+            color: blue
+        }
+        th{
+            color:black;  
             font-size: 20px;
-            font-weight: bold;
-            margin: 10px,0;
-            padding: 20px,25px;
-            width: 40%;
-            border: 0;
-            border-radius: 5px;
+            font: bold;
+
 
         }
-          
+
         
-        .details-form form{
-            font-size: 25px;
-            padding: 15px,10px;
-            border: 0;
-            width: 100%;
-            border-radius: 5px;
-            
-        }
-        .details-form p{
-            font-size: 20px;
-            margin: 15px,0;
-        }
     </style>
+   
+    
 </head>
 <body>
+    
+       
     <div class="details-form">
-        <p style="text-align:left;"> <a href="{% url 'contact' %}">contact</a></p>
-        <p style="text-align:left;"> <a href="{% url 'Stock' %}">add product</a></p>
-        <p style="text-align:left;"> <a href="{% url 'Logout' %}">Logout</a></p>
+        <table>
+            <tr>
+                <th>
+                    <td>
+                        <p style="text-align:right;"> <a href="{% url 'Stock' %}">Add</a></p>
+                        <p style="text-align:right;"> <a href="{% url 'contact' %}">Contact</a></p>&nbsp;&nbsp;&nbsp;
+                        
+                        <p style="text-align:right;"> <a href="{% url 'Logout' %}">Logout</a></p>
+                    </td>
+                    
+                </th>
+            </tr>
+        </table>
+        
+        
         <h1>stock Detail</h1>
     
         <form action="" method="POST">
-            <input  name="item_name" placeholder="search for products" class="form-control">
-            <button class="btn btn-sucess" type="submit">Search</button><br><br>
-
-
-            {% csrf_token %}
-            {% for form in product %}
-              {{ form.name}} <br>
-              {{form.price}} {{ fm.error|striptags }}<br>
-              {{form.status}}
-              <br><br>
-               <a href="/{{form.id}}" type="submit">View</a>&nbsp
-               <a href="{% url 'Buy' %}">Buy</a>
-               <br>
-
-            {% endfor %}
-            <br>
-            <br>
-
-            {% if product.has_previous %}
-                <a  href="?page=1">&laquo; first</a>&nbsp  &nbsp
-                <a href="?page={{ product.previous_page_number }}">previous</a>
-            {% endif %}
-
+           
+            <table>
+                <tr>
+                    <th>
+                        <td>
+                            <input  name="item_name" placeholder="search for products" class="form-control"> &nbsp;&nbsp;<button class="btn btn-sucess" type="submit">Search</button><br><br>
+                        </td><br>
+                        
+                    </th>
+                </tr>
+            </table>
             
-            Page {{ product.number }} of {{product.paginator.num_pages }}.
-       
+            
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name&nbsp;&nbsp;</th>
+                        <th>&nbsp;Price&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;Status&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;Available&nbsp;&nbsp;</th>
 
-        {% if product.has_next %}
-            <a class="page-link" href="?page={{product.next_page_number }}">next</a>&nbsp  &nbsp
-            <a class="page-link" href="?page={{ product.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    {% for fm in product %}
+                    <tr>
+                        <td>
+                            {{ fm.name}}
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;{{fm.price}} 
+                        </td>
+                        <td>
+                           &nbsp;&nbsp; {{fm.status}} {{ fm.error|striptags }} 
+                        </td>
+                        <td>
+                            <a href="/{{fm.id}}/{{fm.id.slug}}" type="submit">View</a> &nbsp; &nbsp;  <a href="/{{fm.id}}">Buy</a>&nbsp;
+                        </td><br>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br> 
+            <table>
+                <tr>
+                    {% if product.has_previous %}
+                    <th>
+                        <td>
+                            <a  href="?page=1">&laquo; Last</a>&nbsp  &nbsp
+                            <a href="?page={{ product.previous_page_number }}">First</a>
+
+                        </td>
+                    </th>
+                    {% endif %}
+                </tr>
+            </table> 
+            <table>
+                <tr>
+                    <th>
+                        <td>
+                             Page {{ product.number }} of {{product.paginator.num_pages }}.
+
+                        </td>
+                    </th>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    {% if product.has_next %}
+                    <th>
+                        <td>
+                            <a class="page-link" href="?page={{product.next_page_number }}">Next</a>&nbsp  &nbsp
+                            <a class="page-link" href="?page={{ product.paginator.num_pages }}">Last &raquo;</a>
+                        </td>
+                    </th>
+                    {% endif %}
+                </tr>
+            </table>
+
         </form>
 </body>
 </html>

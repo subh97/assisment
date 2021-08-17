@@ -17,4 +17,3 @@ class Product(models.Model):
 
 class Busy_product(models.Model):
     quantity = models.IntegerField()
-

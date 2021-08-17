@@ -11,53 +11,62 @@
             margin: 0;
             font: 1em sans-serif;
         }
-
-        body{
-            background-color: springgreen;
-            background-size: cover;
-            color: #000;
-        }
-        .order-form{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 400px;
-            transform: translate(-50%,-50%);
-        }
-        .order-form{
-            font-size: 30px;
-            text-align: center;
-            text-transform:capitalize;
-            margin: 30px,0;
-        }
-        .order-form h1{
+        body  
+        {  
+            margin: 0;  
+            padding: 0;  
+            background-color:#6abadeba;  
+            font-family: 'Arial';  
+}  
+        .detail-form{  
+            width: 700px;  
+            overflow: hidden;  
+            margin: auto;  
+            margin: 20 0;  
+            padding: 80px;  
+            background:darkcyan;  
+            border-radius: 15px ;  
+        }  
+        h1{  
+            text-align: center;  
+            color:black;  
+            padding: 25px;
             font-size: 40px;
-            text-align: center;
             text-transform: capitalize;
-            margin: 40px;
+            margin: 40px;    
         }
+        a{  
+            float: right;  
+            background-color: grey;  
+        }   
+        label{  
+            width: 300px;  
+            height: 30px;  
+            border: none;  
+            border-radius: 3px;  
+            padding-left: 8px;  
+        }   
+         
+        th{
+            color:black;  
+            font-size: 20px;
+            font: bold;
+        }
+        td{
+            color:black;  
+            font-size: 15px;
+            font:italic;  
+        }
+        button{  
+            width: 300px;  
+            height: 30px;  
+            border: none;  
+            border-radius: 17px;  
+            padding-left: 7px;  
+            color: blue;  
+        }  
         
-      
-        .order-form a{
-            font-size: 30px;
-            font-weight: bold;
-            margin: 10px,0;
-            padding: 20px,25px;
-            width: 40%;
-            border: 0;
-            border-radius: 5px;
-
-        }
-          
         
-        .order-form form{
-            font-size: 25px;
-            padding: 15px,10px;
-            border: 0;
-            width: 100%;
-            border-radius: 5px;
-            
-        }
     </style>
 </head>
 <body>
@@ -65,18 +74,63 @@
         <h1>Buy Stock </h1>
         <form action="" method="POST">
             {% csrf_token %}
-            {% for form in product %}
-                {{ form.name}} <br>
-                {{form.price}}<br>
-                {{form.status}}<br>
-                
-            {% endfor %}
-            {% for fm in order %}
-               {{ fm.label_tag}} {{fm}} {{ fm.error|striptags }}
-            {% endfor %}
-         
- 
-         <button type="submit">Add</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>&nbsp;&nbsp;Name&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;Price&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;Status&nbsp;&nbsp;</th>
+                        
+                        <th>&nbsp;&nbsp;Catagory&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;Brand&nbsp;&nbsp;</th>
+                        
+                        </tr>
+                    </thead><br>
+                    <tbody>
+                        {% for form in obj %}
+                        <tr>
+                            <td>
+                                &nbsp;&nbsp; {{ form.name}}&nbsp;&nbsp;
+                            </td>
+                            <td> 
+                                &nbsp;&nbsp;{{form.price}}&nbsp;&nbsp;
+                            </td>
+                            <td>
+                                &nbsp;&nbsp;{{form.status}}
+                            </td>
+                            
+                            <td>
+                                &nbsp;&nbsp;{{form.catagory}}
+                            </td>
+                            <td>
+                                &nbsp;&nbsp;{{form.brand}}
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <table>
+                    <tr>
+                        {% for fm in order %}
+                        <th>
+                            <td>
+                                {{ fm.label_tag}}
+                            </td>
+                            <td> {{fm}} {{ fm.error|striptags }}</td>
+                        </th>
+                        {% endfor %}
+                    </tr>
+                </table><br>
+                <table>
+                    <th>
+                        <td>
+                            <button type="submit">Add</button>
+    
+                        </td>
+                        
+                    </th>
+                </table>
  
         </form>
     
