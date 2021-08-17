@@ -73,43 +73,7 @@
     <div class="order-form">
         <h1>Buy Stock </h1>
         <form action="" method="POST">
-            {% csrf_token %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>&nbsp;&nbsp;Name&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;Price&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;Status&nbsp;&nbsp;</th>
-                        
-                        <th>&nbsp;&nbsp;Catagory&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;Brand&nbsp;&nbsp;</th>
-                        
-                        </tr>
-                    </thead><br>
-                    <tbody>
-                        {% for form in obj %}
-                        <tr>
-                            <td>
-                                &nbsp;&nbsp; {{ form.name}}&nbsp;&nbsp;
-                            </td>
-                            <td> 
-                                &nbsp;&nbsp;{{form.price}}&nbsp;&nbsp;
-                            </td>
-                            <td>
-                                &nbsp;&nbsp;{{form.status}}
-                            </td>
-                            
-                            <td>
-                                &nbsp;&nbsp;{{form.catagory}}
-                            </td>
-                            <td>
-                                &nbsp;&nbsp;{{form.brand}}
-                            </td>
-                            
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+           
                 <table>
                     <tr>
                         {% for fm in order %}

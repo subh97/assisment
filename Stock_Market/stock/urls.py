@@ -10,7 +10,7 @@ urlpatterns=[
     path('stock',views.product_add,name='Stock'),
     path('detail/',views.product_detail,name='Detail'),
     path('<int:id>/',views.product_details,name='Details'),
-    path('<int:id>',views.busy_stock,name='Buy'),
+    path('add/',views.busy_stock,name='Buy'),
     path('ord',views.order_detail),
     path('contact',views.contect,name='contact')
 

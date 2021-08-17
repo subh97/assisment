@@ -7,7 +7,7 @@ from .models import Product
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
-
+""" User Resiger Api """
 
 def SignUpAPI(request):
     if request.method=='POST':
@@ -18,6 +18,8 @@ def SignUpAPI(request):
     else:
         form=SignUpForm()
     return render(request,'stock/signup.html',{'form':form})
+
+""" User Login API """
 
 def LoginAPI(request):
     if request.method=='POST':
@@ -34,15 +36,19 @@ def LoginAPI(request):
         form=AuthenticationForm()
     return render(request,'stock/login.html',{'form':form})
 
+""" User Logout API """
+
 def logoutApi(request):
     logout(request)
     return HttpResponseRedirect('/login/')
 
+""" Home page """
 
 def home(request):
     return render(request,'stock/home.html')
 
 """ add the product in to the database """
+
 @login_required(login_url="login/")
 def product_add(request):
     if request.method=='POST':
@@ -81,8 +87,8 @@ def product_details(request,id):
 
 
 @login_required(login_url="login/")
-def busy_stock(request,id):
-    obj=Product.objects.filter(id=id)
+def busy_stock(request):
+    
     if request.method=='POST':
         
         order=Order_stock(request.POST)
@@ -91,7 +97,7 @@ def busy_stock(request,id):
 
     else:
         order=Order_stock() 
-    return render(request,'stock/order.html',{'obj':obj},{'order':order})
+    return render(request,'stock/order.html',{'order':order})
 
 def order_detail(request):
     obj=list(Product.objects.all().values_list('name','price'))

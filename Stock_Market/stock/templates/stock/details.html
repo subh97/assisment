@@ -140,7 +140,8 @@
                            &nbsp;&nbsp; {{fm.status}} {{ fm.error|striptags }} 
                         </td>
                         <td>
-                            <a href="/{{fm.id}}/{{fm.id.slug}}" type="submit">View</a> &nbsp; &nbsp;  <a href="/{{fm.id}}">Buy</a>&nbsp;
+                            <a href="/{{fm.id}}" type="submit">View</a>
+                             &nbsp; &nbsp;  <a href="{% url 'Buy' %}">Buy</a>&nbsp;
                         </td><br>
                     </tr>
                     {% endfor %}
