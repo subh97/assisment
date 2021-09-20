@@ -1,7 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import widgets
-from rest_framework import fields
 from .models import Product,Busy_product
 from django import forms
 class SignUpForm(UserCreationForm):

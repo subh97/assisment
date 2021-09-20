@@ -8,6 +8,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
 """ User Resiger Api """
+""" user can enter username password first_name last_name throught Register himself  """
 
 def SignUpAPI(request):
     if request.method=='POST':
@@ -20,6 +21,8 @@ def SignUpAPI(request):
     return render(request,'stock/signup.html',{'form':form})
 
 """ User Login API """
+
+""" user enter the username and password and login to the portal """
 
 def LoginAPI(request):
     if request.method=='POST':
@@ -42,11 +45,6 @@ def logoutApi(request):
     logout(request)
     return HttpResponseRedirect('/login/')
 
-""" Home page """
-
-def home(request):
-    return render(request,'stock/home.html')
-
 """ add the product in to the database """
 
 @login_required(login_url="login/")
@@ -59,8 +57,6 @@ def product_add(request):
     else:
         form=ProductAddForm()
     return render(request,'stock/stock.html',{'form':form}) 
-
-""" See all the product detail in to the detail.html page """
 
 
 @login_required(login_url="login/")
@@ -75,16 +71,11 @@ def product_detail(request):
     product = paginator.get_page(page_number)
     return render(request,'stock/details.html',{'product':product})
 
-"""  product discription detail """
-
 
 @login_required(login_url="login/")
 def product_details(request,id):
     product=Product.objects.filter(id=id)
     return render(request,'stock/detail.html',{'product':product})
-
-""" product purchase detail """
-
 
 @login_required(login_url="login/")
 def busy_stock(request):
@@ -99,12 +90,35 @@ def busy_stock(request):
         order=Order_stock() 
     return render(request,'stock/order.html',{'order':order})
 
-def order_detail(request):
-    obj=list(Product.objects.all().values_list('name','price'))
-    print(obj)
 
 
-def contect(request):
-    return render(request,'stock/contect.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

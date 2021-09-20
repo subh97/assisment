@@ -84,21 +84,17 @@
     
        
     <div class="details-form">
-        <table>
-            <tr>
-                <th>
-                    <td>
-                        <p style="text-align:right;"> <a href="{% url 'Stock' %}">Add</a></p>
-                        <p style="text-align:right;"> <a href="{% url 'contact' %}">Contact</a></p>&nbsp;&nbsp;&nbsp;
-                        
-                        <p style="text-align:right;"> <a href="{% url 'Logout' %}">Logout</a></p>
-                    </td>
-                    
-                </th>
-            </tr>
-        </table>
+       <nav>
+        <a href="{% url 'Stock' %}">Add</a></p>
         
         
+        <p style="text-align:right;"> <a href="{% url 'Logout' %}">Logout</a></p>
+       </nav>
+        
+        <a href="{% url 'Stock' %}">Add</a></p>
+       
+        
+        <p style="text-align:right;"> <a href="{% url 'Logout' %}">Logout</a></p>
         <h1>stock Detail</h1>
     
         <form action="" method="POST">
